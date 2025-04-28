@@ -1,0 +1,7 @@
+#cardbox{
+    display: flex;
+    flex-direction: row ;
+    gap: 2rem ;
+    flex-wrap: wrap;
+    background: none;
+}

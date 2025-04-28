@@ -1,0 +1,52 @@
+{% extends 'templates_auth/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{%static '/css/login.css'%}">
+{% for message in messages %}
+  <div class="alert">{{ message }}</div>
+{% endfor %}
+
+<div class="login-container">
+  <form method="post" style="display: flex;flex-direction: column;align-items: center;padding: 6rem;" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1 class="login-title">Login</h1>
+
+    <div class="inputbox">
+      <label for="username">Username *</label>
+
+      <div style="display: flex;align-items: center;">
+        <input type="text" name="username" style="width: 100%;" id="username" placeholder="Your username">
+        <i class="fas fa-user" style="transform: translateX(-1rem);"></i>
+      </div>
+      
+    </div>
+    {%if errors.username %}
+    <p style="color: red; font-weight: bold;font-size: 12px;">{{ errors.username }}</p>
+    {%endif%}
+
+    <div class="inputbox">
+      <label for="password">Password *</label>
+      <div style="display: flex;align-items: center;">
+        <input type="password" name="password" style="width: 100%;" id="password" placeholder="Your password">
+        <i class="fas fa-lock" style="transform: translateX(-1rem);"></i>
+      </div>
+    </div>
+    {%if errors.password %}
+    <p style="color: red; font-weight: bold;font-size: 12px;">{{ errors.password }}</p> 
+    {%endif%}
+
+    <div class="remember-box">
+      <input type="checkbox"  id="remember">
+      <label for="remember">Remember me</label>
+    </div>
+
+    <button type="submit" class="btn-login" style="width:100%;background-color: #4ae;">Send</button>
+
+    <p class="register-link" style="font-size: 1rem;">You haven't already an account? <a style="font-size: 1rem;" href="{% url 'register' %}">Sign up</a></p>
+  </form>
+  <div style="width: 50%; height: 100%;">
+    <img style="object-fit: cover;width: 100%;height: 100%;" src="{%static 'image/login.jpg'%}" alt="">
+  </div>
+</div>
+
+{% endblock %}

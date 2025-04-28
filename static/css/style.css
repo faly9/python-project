@@ -1,0 +1,126 @@
+h1{
+    color: red;
+}
+.container{
+    border: 2px solid black !important;
+    border-radius: 5px !important;
+    padding: 2rem !important;
+    width: 30% !important;
+}
+box{
+    width: 10rem !important;
+    height: 10rem !important;
+}
+.delete{
+    background-color: red !important;
+}
+.voir{
+    background-color: green !important;
+}
+.update{
+    background-color: blue !important;
+}
+
+/* css de connexion */
+
+.inputbox{
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.faly:hover{
+    transition: all .5s ease-in-out;
+    transform: scale(1.1);
+}
+
+.username , .password , .email{
+   cursor: pointer;
+   outline: none;
+   width: 100%;
+   border: none;
+   padding: .5rem;
+   background-color: transparent;
+}
+.form {
+    position: relative;
+    padding: 20px;
+    overflow: hidden;
+    z-index: 1;
+    background: #fff;
+    border: 3px solid transparent; /* optionnel */
+  }
+  
+  /* Ligne animée dans un sens */
+  .form::before,
+  .form::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    z-index: -1;
+    pointer-events: none;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background: linear-gradient(90deg, white, rgb(243, 233, 233));
+    background-size: 300%;
+    animation-name: borderRotate;
+  }
+  
+  /* Sens opposé */
+  .form::after {
+    animation-name: borderRotateReverse;
+  }
+  
+  /* Animation dans un sens */
+  @keyframes borderRotate {
+    0% {
+      transform: rotate(0deg);
+      background-position: 0% 50%;
+    }
+    100% {
+      transform: rotate(360deg);
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Animation dans l'autre sens */
+  @keyframes borderRotateReverse {
+    0% {
+      transform: rotate(360deg);
+      background-position: 100% 50%;
+    }
+    100% {
+      transform: rotate(0deg);
+      background-position: 0% 50%;
+    }
+  }
+.formbox{
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 100%;
+  }
+
+  
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;    
+    animation: shake 0.3s ease;
+}
+
+/* Optionnel : petite animation de tremblement */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
