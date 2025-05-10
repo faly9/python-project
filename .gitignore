@@ -1,0 +1,34 @@
+# Environnement Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.py[cod]
+*$py.class
+
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+*.env
+
+# Fichiers Django
+*.log
+*.pot
+*.pyc
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# JetBrains / VSCode / autres éditeurs
+.idea/
+.vscode/
+*.swp
+
+# Fichiers Docker (si utilisés)
+*.pid
+*.sock
+
+# fichiers sensibles
+secrets.json
