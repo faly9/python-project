@@ -1,0 +1,89 @@
+.login-container {
+    margin: 8rem auto;
+    width: 50%;
+    height: 40rem;
+    background: white;
+    backdrop-filter: blur(1rem);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: formFadeIn 1s ease-out forwards;
+  }
+  
+  @keyframes formFadeIn {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .login-title {
+    font-family: 'Georgia', serif;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: black;
+  }
+  
+  .inputbox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  
+  .inputbox label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: black;
+  }
+  
+  .inputbox input {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .inputbox input:focus {
+    border-color: #28a745;
+  }
+  
+  .remember-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-login {
+    background: green;
+    color: white;
+    padding: 0.7rem 1rem;
+    border: none;
+    font-weight: bold;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-login:hover {
+    background: #218838;
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .alert {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
