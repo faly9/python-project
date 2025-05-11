@@ -1,0 +1,36 @@
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: faly09/+/ 
+      MYSQL_DATABASE: auth        # ✅ correspond à settings.py
+      MYSQL_USER: faly            # ✅ correspond à settings.py
+      MYSQL_PASSWORD: 2975        # ✅ correspond à settings.py
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - backend
+
+  django-app:
+    build: .
+    container_name: django-app
+    command: bash -c "sleep 10 && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql-db
+    environment:
+      - DB_HOST=mysql-db
+    networks:
+      - backend
+
+volumes:
+  mysql-data:
+
+networks:
+  backend:
