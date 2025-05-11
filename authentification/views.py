@@ -29,11 +29,7 @@ def connexion(request):
         if user is not None and user.is_active:
             login(request, user)
             messages.success(request, "vous etes connecte")
-<<<<<<< HEAD
-            return redirect('afficher')
-=======
             return render(request , "templates_auth/accueil.html")
->>>>>>> faly
         elif username == "":
             errors['username'] = "Veuillez remplir le champ username"
         elif not password:
