@@ -80,8 +80,8 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DB_USER = config('DB_USER')
 DB_PASSWORD = config('DB_PASSWORD')
 DB_NAME = config('DB_NAME')
-DB_HOST = config('DB_HOST')
-DB_PORT = config('DB_PORT', cast=int)
+DB_HOST = config('DB_HOST' , default = '127.0.0.1')
+DB_PORT = config('DB_PORT', default=3306 , cast=int)
 
 DATABASES = {
     'default': {
