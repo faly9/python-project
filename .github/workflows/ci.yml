@@ -1,5 +1,5 @@
 name: Django CI
-#namedd
+#nameddd
 on:
   push:
     branches: [main]
@@ -14,10 +14,10 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}          
           MYSQL_DATABASE: ${{ secrets.DB_NAME }}  # crée la base de données automatiquement
           MYSQL_USER: ${{ secrets.DB_USER }}      # crée l’utilisateur
           MYSQL_PASSWORD: ${{ secrets.DB_PASSWORD }}  # mot de passe pour cet utilisateur
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}          
         ports:
           - 3306:3306
         options: >-
