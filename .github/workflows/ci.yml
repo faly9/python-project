@@ -1,5 +1,5 @@
 name: Django CI
-#gfh
+
 on:
   push:
     branches: [main]
@@ -14,10 +14,10 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: faly09/+/
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_ROOT_PASSWORD }}
           MYSQL_DATABASE: test_db
           MYSQL_USER: test_user
-          MYSQL_PASSWORD: test_password
+          MYSQL_PASSWORD: ${{ secrets.DB_PASSWORD }}
         ports:
           - 3306:3306
         options: >-
@@ -39,18 +39,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          
 
-      - name: Wait for DB to be ready
+      - name: Wait for MySQL to be ready
         run: |
-          echo "Waiting for MySQL to be ready..."
-          sleep 15
+          until mysqladmin ping -h 127.0.0.1 --silent; do
+            echo "Waiting for database connection..."
+            sleep 2
+          done
 
       - name: Run migrations
         env:
           DB_NAME: test_db
           DB_USER: test_user
-          DB_PASSWORD: test_password
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
         run: python manage.py migrate
@@ -59,7 +60,7 @@ jobs:
         env:
           DB_NAME: test_db
           DB_USER: test_user
-          DB_PASSWORD: test_password
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
         run: python manage.py test
