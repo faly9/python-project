@@ -25,7 +25,10 @@ services:
     depends_on:
       - mysql-db
     environment:
-      - DB_HOST=mysql-db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}    
     networks:
       - backend
 
