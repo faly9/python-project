@@ -15,9 +15,9 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: faly09/+/
-          MYSQL_DATABASE: ${{ secrets.DB_NAME }}
-          MYSQL_USER: ${{ secrets.DB_USER }}
-          MYSQL_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_password
         ports:
           - 3306:3306
         options: >-
@@ -48,18 +48,18 @@ jobs:
 
       - name: Run migrations
         env:
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: test_db
+          DB_USER: test_user
+          DB_PASSWORD: test_password
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
         run: python manage.py migrate
 
       - name: Run tests
         env:
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: test_db
+          DB_USER: test_user
+          DB_PASSWORD: test_password
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
         run: python manage.py test
