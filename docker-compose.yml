@@ -5,10 +5,10 @@ services:
     container_name: mysql-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: faly09/+/ 
-      MYSQL_DATABASE: auth        # ✅ correspond à settings.py
-      MYSQL_USER: faly            # ✅ correspond à settings.py
-      MYSQL_PASSWORD: 2975        # ✅ correspond à settings.py
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}    
     volumes:
       - mysql-data:/var/lib/mysql
     networks:

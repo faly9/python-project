@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
 
     services:
@@ -15,8 +15,8 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.DB_ROOT_PASSWORD }}
-          MYSQL_DATABASE: test_db   
-          MYSQL_USER: test_user    
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: test_user
           MYSQL_PASSWORD: ${{ secrets.DB_PASSWORD }}
         ports:
           - 3306:3306
@@ -25,6 +25,13 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
+
+    env:
+      DB_NAME: test_db
+      DB_USER: test_user
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
 
     steps:
       - name: Checkout code
@@ -48,19 +55,20 @@ jobs:
           done
 
       - name: Run migrations
-        env:
-          DB_NAME: test_db          
-          DB_USER: test_user         
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
         run: python manage.py migrate
 
       - name: Run tests
-        env:
-          DB_NAME: test_db
-          DB_USER: test_user
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
         run: python manage.py test
+
+      # ✅ Nouvelle partie : build et push Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/django:latest
