@@ -13,7 +13,10 @@ GitHub Actions lets you define a CI/CD workflow that runs automatically after ev
 5. Architecture and Binary Compatibility
 Docker images are architecture-specific. For example, an image built on an amd64 machine produces binaries compatible only with the amd64 instruction set. These binaries (including libraries in /lib or programs like /bin/bash) won’t work on arm64 machines unless the image is rebuilt or configured as multi-arch using docker buildx. This allows you to support multiple architectures by including binaries for each target system.
 
-6. RISC vs. CISC and Why It Matters
+6. Analogy to Understand Execution
+Imagine writing a breakfast recipe (source code), reading it and cooking (CPU compiling), and serving the dish (binary). Others can eat the dish (run the app) but don’t know the steps (source code). Just like that, binaries inside your Docker image are precompiled and unreadable as code—they are ready to run but can’t easily be reverse-engineered. Libraries are binary code, compiled ahead of time for a target architecture.
+
+7. RISC vs. CISC and Why It Matters
 The key difference between architectures lies in how they handle instructions:
 
 CISC (Complex Instruction Set Computing) — used by x86_64/amd64 processors — has rich, complex instructions that can perform multiple operations in one instruction.
