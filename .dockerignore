@@ -1,16 +1,27 @@
+# Cache et fichiers compilés Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Bases de données locales et fichiers logs
 *.db
 *.sqlite3
 *.log
-*.env
-*.git
-*.gitignore
+
+# Environnements virtuels et secrets
 venv/
 .env
-node_modules/
-*.md
-*.yml
 
+# Git
+.git/
+.gitignore
+
+# Node.js
+node_modules/
+
+# Documentation
+*.md
+
+# GitHub workflows (optionnel)
+.github/
