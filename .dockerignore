@@ -12,3 +12,5 @@ venv/
 .env
 node_modules/
 *.md
+*.yml
+*.txt
